@@ -16,6 +16,7 @@
 
     <div class="card-body">
       <div class="card-title"><strong>Name Project:</strong>{{ $project->name }}</div>
+      <div class="card-title"><strong>Type:</strong>{{ $project->type->name }}</div>
       <p class="card-text"><strong>Description:</strong>{{ $project->description }}</p>
       <p class="card-text"><strong>Tipo:</strong>{{ $project->github_link }}</p>
       <a class="btn btn-info my-3" href="{{ route('admin.projects.index')}}">torna alla pagina dei progetti</a>

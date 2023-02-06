@@ -11,5 +11,13 @@ class Project extends Model
     
 
 
-    protected $fillable = ["name", "description", "cover_img", "github_link"];
+    protected $fillable = ["name","type_id" , "description", "cover_img", "github_link" ];
+
+
+    //un tipo può far parte su molti projects
+    public function type() {
+
+        return $this->belongsTo(Type::class);
+
+    }
 }

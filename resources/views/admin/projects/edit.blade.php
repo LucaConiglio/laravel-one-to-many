@@ -31,6 +31,19 @@
     </div>
 
     <div class="mb-3">
+      <label class="form-label">type</label>
+      <select class="form-select" name="type_id">
+        @foreach ($types as $type)
+
+          <option value="{{$type->id}}">{{$type->name}}</option>
+
+        @endforeach
+        
+
+      </select>
+    </div>
+
+    <div class="mb-3">
       <label class="form-label">Description</label>
       <textarea name="description" cols="30" rows="5" class="form-control">{{$project->description}}</textarea>
     </div>

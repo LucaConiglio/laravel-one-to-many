@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\Type;
 use Hamcrest\Description;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -20,7 +21,9 @@ class ProjectController extends Controller
     {
         $projects = Project::all();
 
-        return view("admin.projects.index", compact("projects"));
+        $types = Type::all();
+
+        return view("admin.projects.index", compact( "types", "projects"));
     }
 
     /**
@@ -31,7 +34,9 @@ class ProjectController extends Controller
     public function create()
     {
 
-        return view("admin.projects.create");
+        $types = Type::all();
+
+        return view("admin.projects.create", compact("types") );
     }
 
     /**
@@ -47,7 +52,8 @@ class ProjectController extends Controller
             "name" => "required|min:3|max:20",
             "description" => "required|string",
             "cover_img" => "file",
-            "github_link" => "string"
+            "github_link" => "string",
+            "type_id"=>"string"
         ]);
         
 
@@ -56,6 +62,7 @@ class ProjectController extends Controller
             $path = Storage::put("projects", $data["cover_img"]);
         }
 
+        $types = Type::all();
         
         $project = Project::create([
             ...$data,
@@ -66,8 +73,9 @@ class ProjectController extends Controller
         ]);
 
 
+        
 
-        return redirect()->route("admin.projects.show", $project->id);
+        return redirect()->route("admin.projects.show",  compact("project", "types"));
     }
 
     /**
@@ -79,6 +87,9 @@ class ProjectController extends Controller
     public function show($id)
     {
         $project = Project::findOrFail($id);
+
+
+
         return view("admin.projects.show", compact("project"));
     }
 
@@ -91,7 +102,13 @@ class ProjectController extends Controller
     public function edit($id)
     {
         $project = Project::findOrFail($id);
-        return view("admin.projects.edit", compact("project"));
+
+
+        $types = Type::all();
+
+
+
+        return view("admin.projects.edit", compact("project", "types"));
     }
 
     /**
