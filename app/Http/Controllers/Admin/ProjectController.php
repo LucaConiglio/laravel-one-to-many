@@ -50,10 +50,11 @@ class ProjectController extends Controller
         $data = $request->validate([
 
             "name" => "required|min:3|max:20",
+            "type_id"=>"nullable|string",
             "description" => "required|string",
             "cover_img" => "file",
-            "github_link" => "string",
-            "type_id"=>"string"
+            "github_link" => "string"
+            
         ]);
         
 
@@ -103,6 +104,8 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($id);
 
+        
+
 
         $types = Type::all();
 
@@ -127,9 +130,11 @@ class ProjectController extends Controller
         $data = $request->validate([
 
             "name" => "required|min:3|max:20",
+            "type_id"=>"nullable|string",
             "description" => "required|string",
             "cover_img" => "file",
             "github_link" => "string"
+            
         ]);
 
         if(key_exists("cover_img", $data)) {

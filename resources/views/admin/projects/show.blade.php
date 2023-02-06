@@ -15,10 +15,11 @@
     @endif
 
     <div class="card-body">
-      <div class="card-title"><strong>Name Project:</strong>{{ $project->name }}</div>
-      <div class="card-title"><strong>Type:</strong>{{ $project->type->name }}</div>
-      <p class="card-text"><strong>Description:</strong>{{ $project->description }}</p>
-      <p class="card-text"><strong>Tipo:</strong>{{ $project->github_link }}</p>
+      <div class="card-title"><strong>Name Project: </strong>{{ $project->name }}</div>
+      <div class="card-title"><strong>Type: </strong>{{ $project->type ? $project->type->name : ' ' }}</div>
+      <div class="card-body"><img src="{{ asset('/storage/' . $project->cover_img)  }}" alt="" style="width: 300px; object-fit:cover; object-position: top  "></div>
+      <p class="card-text"><strong>Description: </strong>{{ $project->description }}</p>
+      <p class="card-text"><strong>Tipo: </strong>{{ $project->github_link }}</p>
       <a class="btn btn-info my-3" href="{{ route('admin.projects.index')}}">torna alla pagina dei progetti</a>
     </div>
 

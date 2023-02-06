@@ -35,7 +35,7 @@
       <select class="form-select" name="type_id">
         @foreach ($types as $type)
 
-          <option value="{{$type->id}}">{{$type->name}}</option>
+          <option value="{{ old('field_name')}}"  >{{$type->name}}</option>
 
         @endforeach
         
@@ -51,6 +51,11 @@
     <div class="mb-3">
       <label class="form-label">Cover image</label>
       <input type="file" class="form-control" name="cover_img">
+    </div>
+
+    <div class="mb-3">
+      <h4 class="my-2">previously uploaded image</h4>
+      <img src="{{ asset('/storage/' . $project->cover_img)  }}" alt="" style="width: 200px; object-fit:cover; object-position: top  ">
     </div>
 
     <div class="mb-3">
