@@ -10,10 +10,11 @@
     <thead>
       <tr>
         <th>Id</th>
-        <th>Name</th>
+        
         <th>Cover Img</th>
-        <th>Description</th>
+        <th>Name</th>
         <th>Project Type</th>
+        <th>Description</th>
         <th>Github link</th>
         <th></th>
       </tr>
